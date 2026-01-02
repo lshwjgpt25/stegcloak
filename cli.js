@@ -114,7 +114,7 @@ program
 
     const qsecret = "What's your secret? :"
 
-    const qcover = 'Enter the text you want to hide your secret within? (Minimum 2 words):'
+    const qcover = 'Enter the text you want to hide your secret within?:'
 
     if (args.nocrypt) questions.pop()
 

@@ -113,6 +113,21 @@ const zwcOperations = (zwc) => {
 
 const embed = (cover, secret) => {
   const arr = cover.split(" ");
+
+  // 处理边界情况：空字符串
+  if (arr.length === 0 || (arr.length === 1 && arr[0] === "")) {
+    return secret;
+  }
+
+  // 单个"单词"（按空格分割后只有1个元素）
+  if (arr.length === 1) {
+    const word = arr[0];
+    // 将隐形字符流放在单词前面，这样 detach 函数才能正确提取
+    // 注意：隐形字符是不可见的，所以对用户来说看起来还是原来的文本
+    return secret + word;
+  }
+
+  // 多个单词：使用原有的随机嵌入策略
   const targetIndex = Math.floor(Math.random() * Math.floor(arr.length/2));
   return arr.slice(0, targetIndex+1)
     .concat([secret + arr[targetIndex+1]])

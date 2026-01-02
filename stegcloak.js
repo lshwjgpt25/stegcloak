@@ -50,8 +50,8 @@ class StegCloak {
   }
 
   hide(message, password, cover = "This is a confidential text") {
-    if (cover.split(" ").length === 1) {
-      throw new Error("Minimum two words required");
+    if (!cover || !cover.trim()) {
+      throw new Error("Cover text cannot be empty");
     }
 
     const integrity = this.integrity;
